@@ -1,4 +1,4 @@
-import { Location } from "../../interfaces";
+import { CityLocation } from "../../interfaces";
 import {
   GET_SEARCH_CITY,
   HIDE_LOADER,
@@ -15,7 +15,7 @@ export const getSearchCity = (cityName: string, cityIndex: string) => ({
   },
 });
 
-export const setSearchCityResult = (cityIndex: string, result: Location) => ({
+export const setSearchCityResult = (cityIndex: string, result: CityLocation) => ({
   type: SET_SEARCH_CITY_RESULT,
   payload: {
     cityIndex,

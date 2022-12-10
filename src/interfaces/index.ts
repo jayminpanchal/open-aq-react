@@ -1,41 +1,26 @@
 import rootReducer from "../store/reducers";
 
-export interface Location {
-  id: number;
+export interface CityLocation {
+  location: string;
   city: string;
-  name: string;
-  entity: string;
   country: string;
-  isMobile: boolean;
-  isAnalysis: boolean;
-  sensorType: string;
   coordinates: {
     latitude: number;
     longitude: number;
   };
-  lastUpdated: string;
-  firstUpdated: string;
-  measurements: number;
-  parameters: Parameter[];
-  parameterObj?: Record<string, Parameter>;
+  measurements: Measurement[];
+  measurementsObj: Record<string, Measurement>;
 }
 
-export interface Parameter {
-  id: number;
-  unit: string;
-  count: number;
-  average: number;
-  lastValue: number;
+export interface Measurement {
   parameter: string;
-  displayName: string;
+  value: number;
   lastUpdated: string;
-  parameterId: number;
-  firstUpdated: string;
-  manufacturers?: string;
+  unit: string;
 }
 
 export interface LocationReducer {
-  results?: Record<CityIndex, Location>;
+  results?: Record<CityIndex, CityLocation>;
   errors?: Record<CityIndex, string>;
 }
 
@@ -45,7 +30,7 @@ export interface LoaderReducer {
 
 export type AppState = ReturnType<typeof rootReducer>;
 
-export interface LocationResponse {
+export interface CityLocationResponse {
   meta: {
     name: string;
     license: string;
@@ -54,13 +39,12 @@ export interface LocationResponse {
     limit: number;
     found: number;
   };
-  results: Location[];
+  results: CityLocation[];
 }
 
 export type CityIndex = "city1" | "city2";
 
 export interface AQTableData {
-  id: number;
   city1: number;
   city2: number;
   unit: string;
